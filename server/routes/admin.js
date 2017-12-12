@@ -23,10 +23,8 @@ module.exports = (() => {
                     escortNeeded: user.escortNeeded, 
                     escortName: user.escortName
                 }
-                // console.log('args: ', arg)
                 userMap.push(arg)
               })
-            console.log(userMap)
             res.send(JSON.stringify(userMap))         
           }
         })
@@ -34,7 +32,6 @@ module.exports = (() => {
 
     router.get('/isauth', (req, res, next) => {
         if (req.user) {
-            console.log(req.user)
             res.send(req.user)
         }
     })
@@ -47,10 +44,10 @@ module.exports = (() => {
 
     const checkAuth = (req, res, next) => {
         if (req.isAuthenticated()) {
-        next()
+            next()
         }
         else {
-        res.redirect('/admin')
+            res.redirect('/admin')
         }
     }
 
@@ -59,36 +56,36 @@ module.exports = (() => {
         /* Hash User password first and then create User object to store in DB on 
         * hash success */
         bcrypt.hash(req.body.password, 10, function(err, hash) {
-        if (err) {
-            res.status(499).send()
-        }
-        else {
-            const newAdmin = new Admin({
-            username: req.body.username,
-            password: hash // Hash, not plain!
-            })
-
-            Admin.create(newAdmin, (err) => {
             if (err) {
-                if (err.name === 'MongoError' && err.code === 11000) {
-                //search error message body for error source = 'email' or 'username'
-                if (err.message.search('username') != '-1') {
-                    res.statusMessage = 'username'
-                    return res.status(409).send()
-                }
-                else if (err.message.search('email') != '-1') {
-                    res.statusMessage = 'email'
-                    return res.status(409).send()
-                }  
-                }
-                
-                /* Error message not displayed by default, included this to make stack trace 
-                * more descriptive. */
-                console.log(err.message)
-                throw err
+                res.status(499).send()
             }
-            })
-        }
+            else {
+                const newAdmin = new Admin({
+                    username: req.body.username,
+                    password: hash // Hash, not plain!
+                })
+
+                Admin.create(newAdmin, (err) => {
+                if (err) {
+                    if (err.name === 'MongoError' && err.code === 11000) {
+                    //search error message body for error source = 'email' or 'username'
+                    if (err.message.search('username') != '-1') {
+                        res.statusMessage = 'username'
+                        return res.status(409).send()
+                    }
+                    else if (err.message.search('email') != '-1') {
+                        res.statusMessage = 'email'
+                        return res.status(409).send()
+                    }  
+                    }
+                    
+                    /* Error message not displayed by default, included this to make stack trace 
+                    * more descriptive. */
+                    console.log(err.message)
+                    throw err
+                }
+                })
+            }
         })
     })
 

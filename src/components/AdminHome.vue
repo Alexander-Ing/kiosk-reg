@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Admin Home',
   data() {
     return {
       username: '',
@@ -83,28 +83,18 @@ export default {
   },
   computed : {
     updateUserList: function() {
-      // const currentList = this.$store.getters.listOfUsers
-      // const importantAttributes = {}
       console.log('update called getter: ', this.$store.getters.listOfUsers[0]);
       if (this.listRetrieved) {
         console.log('getter length: ', this.$store.getters.listOfUsers.length);
         for (var k = 0; k < this.$store.getters.listOfUsers.length; k++) {
           this.rows.push(this.$store.getters.listOfUsers[k]);
         }
-        // this.postList = importantAttributes
         return true;
       }
       return false;
     },
   },
   methods: {
-    fetchData() {
-        // this.$store.dispatch('getList');
-        // this.$store.dispatch('getList');
-        // this.$toast(this.$store.state.admin.username);
-        // rows: this.$store.state.list;
-        // console.log('in fetch data: ', this.$store.state.list);
-    },
     loginRedirect(event) {
       this.$store.dispatch('logout');
       this.$router.push('/admin');
@@ -117,7 +107,6 @@ export default {
     },
     getList() {
       if (!this.listRetrieved) {
-        // var userlist = this.$store.state.list;
         this.$store.dispatch('getList').then((res) => {
           console.log('list here', this.$store.state);
         }, (err) => {
@@ -129,11 +118,7 @@ export default {
     },
   },
   mounted() {
-    // this.$toast(this.$store.state.admin.username);
-    // rows: this.$store.state.list;
-    // console.log('rows', this.rows[0].name)
     this.$store.dispatch('getUser');
-    // this.$toast(this.$store.state.admin.username);
   },
   updated() {
     this.getList();
