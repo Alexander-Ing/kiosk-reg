@@ -3,6 +3,8 @@
 > kiosk registration app
 
 ## Nonfunctional requirements
+Text Here
+![Alt text](./highlevel_arch.PNG "Highlevel Arch of Kiosk-Reg")
 The kiosk-reg project is built on the MEVN stack (MongoDB, Express, Vue, and Nodejs). The decision to use MEVN came after considering other potential stacks, the stacks considered were MEAN (MongoDB, Express, Angularjs, and Nodejs), MERN (MongoDB, Express, React, and Nodejs), and LAMP (Linux, Apache, MySQL, and PHP). The MEAN and MERN stacks are similar to the MEVN stack with the only difference being the front end, the advantages of using MEAN or MERN is that they have a lot of community support and great documentation. However, Vue and the MEVN stack was chosen due to previous knowledge and experience using that technology. The LAMP stack was briefly considered because of previous projects built on this stack, however it was not chosen due to its reliance of aging technologies such as PHP. Other technologies used in the kiosk-reg project are mongoose, passport, and bootstrap, these technologies were chosen due to their ease of use, past experince, and good documentation.
 
 ## Installation instructions
