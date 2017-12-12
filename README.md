@@ -1,7 +1,7 @@
 # kiosk-reg
 
 ## Nonfunctional requirements
-Below is the highlevel architecture of the kiosk registration project with the relevant technologies of the MEVN stack and a visual of their purpose. An explination as to why these technologies were chosen is found below.
+Below is the highlevel architecture of the kiosk registration project with the relevant technologies of the MEVN stack and a visual of their purpose. The Kiosk project shall be built to run locally, but can be deployed with technologies such as DigitalOcean. An explination as to why these technologies were chosen is found below.
 
 ![Alt text](./images/highlevel_arch.PNG)
 
