@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     validateBeforeSubmit(event) {
-      // event.preventDefault();
       this.$validator.validateAll().then((result) => {
         if (result) {
           const kioskUser = {
@@ -78,11 +77,6 @@ export default {
           };
           this.$store.dispatch('register', kioskUser).then((res) => {
             if (res.status === 200) {
-              // this.$toast('Registration Complete!', {
-              //   duration: 2000,
-              //   horizontalPosition: 'center',
-              //   verticalPosition: 'bottom',
-              // });
               alert('Registration Completed!')
               location.reload();
             } else {

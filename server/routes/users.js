@@ -5,12 +5,6 @@ module.exports = (() => {
     'use strict'
     const router = express.Router()
 
-    /* User listing endpoint. */
-    router.get('/list', (req,res) => {
-        console.log("test api endpoint reached")
-        res.status(200).send()
-      })
-
     /* Register user */
     router.post('/register', (req, res) => {
         const kioskUser = new User({

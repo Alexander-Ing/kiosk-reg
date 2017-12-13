@@ -12,14 +12,6 @@
   <div v-else>  
     <div class="container">
         <h1>{{ message }} {{this.$store.state.admin.username}}</h1>
-        <!-- <form id="logout" @submit.prevent="validateBeforeSubmit" method="POST" action="/api/admin/logout">
-        <div class="form-group">
-            <p class="control">
-                <button class="button is-primary" type="submit">Logout</button>
-            </p>
-        </div>
-        </form> -->
-        
         <div class="table" v-if="updateUserList">
             <vue-good-table
             title="Users Table"

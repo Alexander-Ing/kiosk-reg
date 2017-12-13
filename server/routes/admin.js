@@ -66,24 +66,24 @@ module.exports = (() => {
                 })
 
                 Admin.create(newAdmin, (err) => {
-                if (err) {
-                    if (err.name === 'MongoError' && err.code === 11000) {
-                    //search error message body for error source = 'email' or 'username'
-                    if (err.message.search('username') != '-1') {
-                        res.statusMessage = 'username'
-                        return res.status(409).send()
+                    if (err) {
+                        if (err.name === 'MongoError' && err.code === 11000) {
+                            //search error message body for error source = 'email' or 'username'
+                            if (err.message.search('username') != '-1') {
+                                res.statusMessage = 'username'
+                                return res.status(409).send()
+                            }
+                            else if (err.message.search('email') != '-1') {
+                                res.statusMessage = 'email'
+                                return res.status(409).send()
+                            }
+                        }
+                        
+                        /* Error message not displayed by default, included this to make stack trace 
+                        * more descriptive. */
+                        console.log(err.message)
+                        throw err
                     }
-                    else if (err.message.search('email') != '-1') {
-                        res.statusMessage = 'email'
-                        return res.status(409).send()
-                    }  
-                    }
-                    
-                    /* Error message not displayed by default, included this to make stack trace 
-                    * more descriptive. */
-                    console.log(err.message)
-                    throw err
-                }
                 })
             }
         })
